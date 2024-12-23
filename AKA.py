@@ -59,14 +59,14 @@ def fetch_product_row_and_name(target):
             connection.close()
 
 def iterative_sequential_search(data, target):
-    for index, value in enumerate(data):
-        time.sleep(0.05)
-        if value.lower() == target.lower():
-            return index
+    n = len(data)  
+    for i in range(n):  
+        if data[i].lower() == target.lower():
+            return i
     return -1
 
+
 def recursive_sequential_search(data, target, index=0):
-    time.sleep(0.05)
     if index >= len(data):
         return -1
     if data[index].lower() == target.lower():

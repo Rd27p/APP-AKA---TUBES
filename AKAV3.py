@@ -51,7 +51,7 @@ def iterative_sequential_search(data, target):
             return i
     return -1
 
-def recursive_sequential_search(data, target, index=0):
+def recursive_sequential_search(data, target, index=0): 
     if index >= len(data):  
         return -1
     if data[index].lower() == target.lower():  
@@ -130,10 +130,10 @@ entry = tk.Entry(root, width=40)
 entry.pack(pady=5)
 
 # Buttons for iterative and recursive search
-iterative_button = tk.Button(root, text="Search Iterative (5 times)", command=perform_iterative_search)
+iterative_button = tk.Button(root, text="Search Iterative (10 times)", command=perform_iterative_search)
 iterative_button.pack(pady=10)
 
-recursive_button = tk.Button(root, text="Search Recursive (5 times)", command=perform_recursive_search)
+recursive_button = tk.Button(root, text="Search Recursive (10 times)", command=perform_recursive_search)
 recursive_button.pack(pady=10)
 
 # Display results for iterative search
