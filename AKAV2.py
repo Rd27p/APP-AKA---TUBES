@@ -48,7 +48,7 @@ def iterative_sequential_search(data, target):
     n = len(data)  
     for i in range(n):  
         if data[i].lower() == target.lower():
-            return i
+            return i  # Return index i
     return -1
 
 def recursive_sequential_search(data, target, index=0):
@@ -73,8 +73,12 @@ def perform_iterative_search():
 
         # Update the global iterative times list and graph
         iterative_times.extend(iterative_times_local)
-        result_iterative_text.set(f"Iterative: '{target_product}' search completed 5 times.")
-
+        
+        if result_iterative != -1:
+            result_iterative_text.set(f"Product found: '{products[result_iterative]}'")
+        else:
+            result_iterative_text.set(f"Product '{target_product}' not found.")
+        
         # Update graph with iterative search time
         update_comparison_graph()
 
@@ -93,9 +97,14 @@ def perform_recursive_search():
             end_time = time.time()
             recursive_time = end_time - start_time
             recursive_times_local.append(recursive_time)
+        
         # Update the global recursive times list and graph
         recursive_times.extend(recursive_times_local)
-        result_recursive_text.set(f"Recursive: '{target_product}' search completed 5 times.")
+        
+        if result_recursive != -1:
+            result_recursive_text.set(f"Product found: '{products[result_recursive]}'")
+        else:
+            result_recursive_text.set(f"Product '{target_product}' not found.")
         
         # Update graph with recursive search time
         update_comparison_graph()
@@ -141,18 +150,10 @@ result_iterative_text = tk.StringVar()
 result_iterative_label = tk.Label(root, textvariable=result_iterative_text, wraplength=300)
 result_iterative_label.pack(pady=5)
 
-time_iterative_text = tk.StringVar()
-time_iterative_label = tk.Label(root, textvariable=time_iterative_text, wraplength=300)
-time_iterative_label.pack(pady=5)
-
 # Display results for recursive search
 result_recursive_text = tk.StringVar()
 result_recursive_label = tk.Label(root, textvariable=result_recursive_text, wraplength=300)
 result_recursive_label.pack(pady=5)
-
-time_recursive_text = tk.StringVar()
-time_recursive_label = tk.Label(root, textvariable=time_recursive_text, wraplength=300)
-time_recursive_label.pack(pady=5)
 
 # Set up the matplotlib figure and axes for a single comparison graph
 fig, ax = plt.subplots(figsize=(8, 6))  # One single axis for the comparison graph
