@@ -15,7 +15,7 @@ def fetch_product_names():
             host="localhost",
             user="root",
             password="12345",
-            database="gpu data"  
+            database="gpu_data"  
         )
 
         if connection.is_connected():
@@ -48,20 +48,25 @@ def iterative_sequential_search(data, target):
     n = len(data)  
     for i in range(n):  
         if data[i].lower() == target.lower():
-            return i  # Return index i
+            return i
     return -1
 
 def recursive_sequential_search(data, target, index=0):
-    if index >= len(data):  
+    n = len(data) 
+    if index >= n:  
         return -1
-    if data[index].lower() == target.lower():  
+    elif data[index].lower() == target.lower():  
         return index
-    return recursive_sequential_search(data, target, index + 1)  
+    else:
+        return recursive_sequential_search(data, target, index + 1)  
 
 def perform_iterative_search():
-    target_product = entry.get()  
-    products = fetch_product_names()
+    target_product = entry.get().strip()  
+    if not target_product:
+        messagebox.showerror("Error", "Please enter a product name to search.")
+        return
 
+    products = fetch_product_names()
     if products:
         iterative_times_local = []  
         for _ in range(5):  
@@ -71,24 +76,25 @@ def perform_iterative_search():
             iterative_time = end_time - start_time
             iterative_times_local.append(iterative_time)
 
-        # Update the global iterative times list and graph
-        iterative_times.extend(iterative_times_local)
-        
+        iterative_times.extend(iterative_times_local)  # Update global list
+
         if result_iterative != -1:
             result_iterative_text.set(f"Product found: '{products[result_iterative]}'")
         else:
             result_iterative_text.set(f"Product '{target_product}' not found.")
         
-        # Update graph with iterative search time
-        update_comparison_graph()
+        update_comparison_graph()  # Update graph after iterative search
 
     else:
         messagebox.showerror("Error", "No products found in the database.")
 
 def perform_recursive_search():
-    target_product = entry.get()  
-    products = fetch_product_names()
+    target_product = entry.get().strip()  
+    if not target_product:
+        messagebox.showerror("Error", "Please enter a product name to search.")
+        return
 
+    products = fetch_product_names()
     if products:
         recursive_times_local = []  
         for _ in range(5): 
@@ -98,16 +104,14 @@ def perform_recursive_search():
             recursive_time = end_time - start_time
             recursive_times_local.append(recursive_time)
         
-        # Update the global recursive times list and graph
-        recursive_times.extend(recursive_times_local)
+        recursive_times.extend(recursive_times_local)  # Update global list
         
         if result_recursive != -1:
             result_recursive_text.set(f"Product found: '{products[result_recursive]}'")
         else:
             result_recursive_text.set(f"Product '{target_product}' not found.")
         
-        # Update graph with recursive search time
-        update_comparison_graph()
+        update_comparison_graph()  # Update graph after recursive search
 
     else:
         messagebox.showerror("Error", "No products found in the database.")
