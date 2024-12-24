@@ -65,13 +65,14 @@ def iterative_sequential_search(data, target):
             return i
     return -1
 
-
 def recursive_sequential_search(data, target, index=0):
-    if index >= len(data):
+    n = len(data) 
+    if index >= n:  
         return -1
-    if data[index].lower() == target.lower():
+    elif data[index].lower() == target.lower():  
         return index
-    return recursive_sequential_search(data, target, index + 1)
+    else:
+        return recursive_sequential_search(data, target, index + 1)  
 
 def perform_iterative_search():
     target_product = entry.get()

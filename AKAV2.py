@@ -15,7 +15,7 @@ def fetch_product_names():
             host="localhost",
             user="root",
             password="12345",
-            database="gpu_data"  
+            database="gpu data"  
         )
 
         if connection.is_connected():
