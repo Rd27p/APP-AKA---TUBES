@@ -63,7 +63,7 @@ def perform_iterative_search():
     products = fetch_product_names()
     if products:
         iterative_times_local = []
-        for _ in range(5):  # Jalankan 100 kali untuk hasil lebih stabil
+        for _ in range(5):  # Jalankan 5 kali untuk hasil lebih stabil
             start_time = time.perf_counter()
             result_iterative = iterative_sequential_search(products, target_product)
             end_time = time.perf_counter()
@@ -92,7 +92,7 @@ def perform_recursive_search():
     products = fetch_product_names()
     if products:
         recursive_times_local = []
-        for _ in range(5):  # Jalankan 100 kali untuk hasil lebih stabil
+        for _ in range(5):  # Jalankan 5 kali untuk hasil lebih stabil
             start_time = time.perf_counter()
             result_recursive = recursive_sequential_search(products, target_product)
             end_time = time.perf_counter()
