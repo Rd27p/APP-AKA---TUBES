@@ -40,10 +40,13 @@ def fetch_product_names():
 
 
 def iterative_sequential_search(data, target):
-    for i in range(len(data)):
-        if data[i].lower() == target.lower():
-            return i
-    return -1
+    i = 0  # Inisialisasi indeks awal
+    while i < len(data):  # Perulangan berjalan selama indeks berada dalam rentang panjang data
+        if data[i].lower() == target.lower():  # Periksa apakah elemen saat ini cocok dengan target (abaikan huruf besar/kecil)
+            return i  # Kembalikan indeks jika ditemukan
+        i += 1  # Tingkatkan indeks untuk memeriksa elemen berikutnya
+    return -1  # Kembalikan -1 jika target tidak ditemukan
+
 
 
 def recursive_sequential_search(data, target, index=0):
